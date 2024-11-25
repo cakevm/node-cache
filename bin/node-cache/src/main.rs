@@ -3,8 +3,8 @@ use alloy_provider::ProviderBuilder;
 use clap::Parser;
 use jsonrpsee::server::ServerBuilder;
 use node_cache_recorder::{PickleRecorder, Recorder};
-use node_cache_rpc::engine::NodeCacheEngineEthApi;
-use reth_rpc_api::EngineEthApiServer;
+use node_cache_rpc::{NodeCacheDebugApi, NodeCacheEthApi};
+use reth_rpc_api::{DebugApiServer, EthApiServer};
 use std::process::exit;
 use std::sync::Arc;
 use tokio::signal;
@@ -29,12 +29,15 @@ async fn main() -> eyre::Result<()> {
     let recorder = Arc::new(PickleRecorder::new(args.db_file_path));
 
     // APIs
-    let engine_eth = NodeCacheEngineEthApi::new(provider, recorder.clone());
+    let debug_eth = NodeCacheDebugApi::new(provider.clone(), recorder.clone());
+    let core_eth = NodeCacheEthApi::new(provider.clone(), recorder.clone());
+    let mut rpc_module = core_eth.into_rpc();
+    rpc_module.merge(debug_eth.into_rpc())?;
 
     // Server
     let server = ServerBuilder::default().build(args.host).await?;
     let addr = server.local_addr()?;
-    let handle = server.start(engine_eth.into_rpc());
+    let handle = server.start(rpc_module);
 
     info!("Server started at {:?}", addr);
 

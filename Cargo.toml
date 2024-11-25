@@ -40,8 +40,11 @@ pickledb = "0.5.1"
 jsonrpsee = "0.24"
 
 # alloy
+alloy-dyn-abi = "0.8.12"
 alloy-primitives = "0.8.12"
 alloy-provider = "0.6.4"
+alloy-rpc-types-debug = "0.6.4"
 alloy-rpc-types-eth = "0.6.4"
+alloy-rpc-types-trace = "0.6.4"
 alloy-serde = "0.6.4"
 alloy-transport = "0.6.4"

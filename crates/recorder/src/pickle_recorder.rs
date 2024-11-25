@@ -14,7 +14,7 @@ impl PickleRecorder {
         PickleRecorder { db: RwLock::new(db) }
     }
 }
-
+//tokio::task::spawn_blocking(move || {
 #[async_trait::async_trait]
 impl Recorder for PickleRecorder {
     async fn record<T: Serialize + Send + Sync>(&self, key: &str, value: &T) -> eyre::Result<()> {

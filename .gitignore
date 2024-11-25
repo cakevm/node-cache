@@ -12,3 +12,4 @@ target/
 # IDE files
 .idea
 .vscode
+record.db

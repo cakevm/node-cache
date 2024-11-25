@@ -286,6 +286,7 @@ dependencies = [
  "alloy-primitives",
  "alloy-rpc-client",
  "alloy-rpc-types-eth",
+ "alloy-rpc-types-trace",
  "alloy-transport",
  "alloy-transport-http",
  "async-stream",
@@ -3351,13 +3352,18 @@ dependencies = [
 name = "node-cache-rpc"
 version = "0.0.1"
 dependencies = [
+ "alloy-dyn-abi",
  "alloy-primitives",
  "alloy-provider",
+ "alloy-rpc-types-debug",
  "alloy-rpc-types-eth",
+ "alloy-rpc-types-trace",
  "alloy-serde",
  "alloy-transport",
  "async-trait",
+ "bytes",
  "eyre",
+ "futures",
  "jsonrpsee",
  "node-cache-recorder",
  "reth-rpc",
