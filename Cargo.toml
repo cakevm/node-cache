@@ -1,0 +1,47 @@
+[workspace]
+default-members = ["bin/node-cache"]
+members = ["bin/node-cache", "crates/recorder", "crates/rpc"]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+exclude = [".github/"]
+homepage = "https://github.com/cakevm/node-cache"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/cakevm/node-cache"
+rust-version = "1.82"
+version = "0.0.1"
+
+[workspace.dependencies]
+node-cache-recorder = { path = "crates/recorder" }
+node-cache-rpc = { path = "crates/rpc" }
+
+# logging
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+
+# misc
+async-trait = "0.1.83"
+clap = { version = "4.5.21", features = ["derive"] }
+eyre = "0.6.12"
+futures = "0.3.31"
+serde = "1.0.215"
+tokio = { version = "1.23.1", features = ["full"] }
+
+# reth
+reth-rpc = { git = "https://github.com/paradigmxyz/reth", tag = "v1.1.2" }
+reth-rpc-api = { git = "https://github.com/paradigmxyz/reth", tag = "v1.1.2" }
+reth-rpc-eth-api = { git = "https://github.com/paradigmxyz/reth", tag = "v1.1.2" }
+
+# db
+pickledb = "0.5.1"
+
+# rpc
+jsonrpsee = "0.24"
+
+# alloy
+alloy-primitives = "0.8.12"
+alloy-provider = "0.6.4"
+alloy-rpc-types-eth = "0.6.4"
+alloy-serde = "0.6.4"
+alloy-transport = "0.6.4"
